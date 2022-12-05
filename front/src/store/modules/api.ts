@@ -8,12 +8,12 @@ export default createStore({
   getters: {
   },
   mutations: {
-    setDatabases(data: any, state: any) {
+    setDatabases(data, state) {
       state.databases = data;
     },
   },
   actions: {
-    getDatabases(context: any) {
+    getDatabases(context) {
       return new Promise((resolve, reject) => {
         axios.get('http://localhost:3001/get-items')
           .then((response) => {
@@ -27,7 +27,7 @@ export default createStore({
             }
           })
           .catch((response) => {
-            reject(response);
+            reject(response.response.data.errorCode);
           });
       });
     },
